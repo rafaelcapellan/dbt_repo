@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+#Nombres y descripción de las tablas y sus columnas procedentes de SNOWFLAKE_SAMPLE_DATA.TPCH_SF1 (raw sources)
+  - name: TPCH_SF1
+    database: SNOWFLAKE_SAMPLE_DATA
+    description: 'Datos de la fuente (raw data)'
+    schema: '{{ var("schema_data") }}'
+
+    tables:
+      - name: CUSTOMER
+        identifier: "CUSTOMER"
+        description: main customer table
+        columns:
+          - name: c_custkey
+            description: Primary Key of the Customer table
+            tests:
+              - unique
+              - not_null
+          - name: c_name
+            description: customer id
+          - name: c_address
+            description: address of the customer
+          - name: c_nationkey
+            description: foreign key to stg_tpch_nations
+          - name: c_phone
+            description: phone number of the customer
+          - name: c_acctbal
+            description: raw account balance 
+          - name: c_mktsegment
+            description: market segment of the customer
+          - name: c_comment
+            description: additional commentary
